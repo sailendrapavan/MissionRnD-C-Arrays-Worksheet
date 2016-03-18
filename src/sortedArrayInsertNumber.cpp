@@ -42,19 +42,6 @@ int * sortedArrayInsertNumber(int *Arr, int len, int num)
 		}
 	}
 	Arr[i] = num;
-	/*for (int i = 0; i < len; i++)
-	{
-		if (p[i]<num&&p[i + 1]>num)
-		{
-			index = i;
-			break;
-		}
-	}
-	for (int i = len-1; i>index+1; i--)
-	{
-		p[i+1] =p[i];
-	}
-	p[index + 1] = num;
-	*/
+	
 	return Arr;
 }

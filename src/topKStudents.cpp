@@ -15,39 +15,37 @@ NOTES:
 
 #include <iostream>
 #include <malloc.h>
-
+#include<string.h>
 struct student {
 	char *name;
 	int score;
 };
 
 struct student ** topKStudents(struct student *students, int len, int K) {
+	struct student temp, **ptr;
+	int i, j;
 
-	if (students == NULL || len == 0)
-	{
+	if (students == NULL || len <= 0 || K <= 0)
 		return NULL;
-	}
-	for (int i = 0; i < len; i++)
+	if (K > len)
+		K = len;
+	for (i = 0; i < len; i++)
 	{
-		for (int j = i + 1; j < len; j++)
+		for (j = i + 1; j < len; j++)
 		{
-			
-				if ((students[i].score) > (students[j].score))
-				{
-					int t = students[i].score;
-					students[i].score = students[j].score;
-					students[j].score = t;
-				}
-
+			if (students[i].score < students[j].score)
+			{
+				temp = students[i];
+				students[i] = students[j];
+				students[j] = temp;
 			}
 		}
-	struct student s[10];
-	for (int p = 0; p <K; p++)
-	{
-		s[p] = students[p];
-		
 	}
-	struct student *p = s;
-	return &p;
-	
+
+	ptr = (struct student**)malloc(K*sizeof(struct student*));
+	i = 0;
+	for (int o = 1; o <= K; o++)
+		ptr[i++] = &students[K - o];
+
+	return ptr;
 }
